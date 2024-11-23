@@ -1,0 +1,59 @@
+.container {
+    background-color: var(--footer-background-color);
+    color: var(--white-text);
+    width: 100%;
+    display: flex;
+    align-items: center; /* Optional: Center items horizontally */
+    justify-content: space-between;
+    padding: 0 160px;
+}
+
+.col {
+    margin: 20px;
+    display: flex;
+    font-weight: 18px;
+    width: 400px;
+}
+
+.logo {
+    width: 35px;
+    height: 35px;
+    margin-right: 15px; 
+}
+
+.name {
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact,
+.links {
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+
+.contact p,
+.links p {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.item {
+    display: flex; /* Make the item a flex container */
+    align-items: center; /* Align items vertically */
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+        padding: 0 20px;
+    }
+}

@@ -1,0 +1,35 @@
+.container {
+    font-family: var(--font-family), sans-serif;
+    background-color: var(--navbar-spso-soft-color);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.title {
+    margin-bottom: 20px;
+    font-weight: 200;
+    color: var(--text);
+}
+
+.table {
+    width: 100%;
+}
+
+.table thead {
+    font-weight: 500;
+}
+
+.table td {
+    padding: 10px;
+}
+
+.user {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.userImage {
+    object-fit: cover;
+}
+

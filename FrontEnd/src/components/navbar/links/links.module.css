@@ -1,0 +1,91 @@
+.links,
+.container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.links {
+    font-weight: 500;
+}
+
+.logout {
+    color: var(--button-primary-color);
+    transition: 0.2s ease;
+}
+
+.logout:hover {
+    color: var(--button-hover-color);
+}
+
+.login {
+    background-color: var(--button-primary-color);
+    color: var(--white-text);
+    padding: 10px 15px;
+    border-radius: 20px;
+    transition: 0.2s ease;
+}
+
+.login:hover {
+    background-color: var(--button-hover-color);
+}
+
+.menuBtn,
+.responsiveLinks {
+    display: none;
+}
+
+.sidebar {
+    display: none;
+}
+
+
+/* Small screen */
+@media (max-width: 960px) {
+    .links {
+        display: none;
+    }
+
+    .menuBtn {
+        display: block;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        height: 35px;
+        width: 35px;
+    }
+    
+    .sidebar {
+        position: fixed;
+        top: 0; 
+        right: 0;
+        width: 40%;
+        height: 100vh;
+        background-color: var(--navbar-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: -5px 0 5px rgba(0, 0, 0, 0.2);
+        transform: translateX(100%); /* Initially off-screen */
+        transition: transform 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+    .sidebarOpen {
+        transform: translateX(0);
+    }
+
+    .closeBtn {
+        position: absolute;
+        top: 20px; /* Adjust as needed */
+        left: 20px; /* Adjust as needed */
+        z-index: 1; /* Ensure it's above other content */
+    }
+}
+
+@media (max-width: 768px) {
+    .links {
+        width: 50%;
+    }
+}

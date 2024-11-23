@@ -1,0 +1,40 @@
+.container {
+    background-color: var(--navbar-spso-soft-color);
+    color: var(--text);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.2s ease;
+}
+
+.container:hover {
+    background-color: var(--navbar-spso-color);
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.number {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.detail {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.positive {
+    color: rgb(25, 168, 25);
+    font-weight: 500;
+}
+
+.negative {
+    color: rgb(212, 5, 5);
+}
