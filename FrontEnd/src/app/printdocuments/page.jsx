@@ -1,52 +1,89 @@
+'use client';
+
 import Image from 'next/image';
 import styles from './page.module.css';
-import React  from 'react';
-import FileUpload from '../../components/FileUpload/FileUpload';
-
-const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      console.log("File selected:", file.name);
-      // Add your file handling logic here
-    }
-  };
-  
+import * as React from 'react';
+import { useEdgeStore } from '@/lib/edgestore.ts'; // Do not use .ts extension here
+import { MultiFileDropzone } from '../../components/multiFileDropZone/MultiFileDropZone.jsx'; 
+import { useState } from 'react';
+import SelectedFiles from '@/components/selectedFiles/SelectedFiles.jsx';
 
 const PrintDoc = () => {
+  const [fileStates, setFileStates] = useState([]);
+  const { edgestore } = useEdgeStore();  
+
+  function updateFileProgress(key, progress) {
+    setFileStates((fileStates) => {
+      const newFileStates = structuredClone(fileStates);
+      const fileState = newFileStates.find(
+        (fileState) => fileState.key === key
+      );
+      if (fileState) {
+        fileState.progress = progress;
+      }
+      return newFileStates;
+    });
+  }
+
   return (
     <div className={styles.container}>
-      {/* Khung chính */}
+      {/* Main Section */}
       <div className={styles.rectangle}>
-        {/* Tiêu đề */}
+        {/* Title */}
         <div className={styles.title}>Đăng tải file</div>
         <div className={styles.bodySection}>
-          {/* Khung tải file */}
+          {/* MultiFileDropZone Section */}
           <div className={styles.leftRectangle}>
             <div className={styles.uploadRectangle}>
-                <FileUpload />
+              <MultiFileDropzone
+                value={fileStates}
+                onChange={(files) => {
+                  setFileStates(files);
+                }}
+                onFilesAdded={async (addedFiles) => {
+                  setFileStates([...fileStates, ...addedFiles]);
+                  await Promise.all(
+                    addedFiles.map(async (addedFileState) => {
+                      try {
+                        const res = await edgestore.publicFiles.upload({
+                          file: addedFileState.file,
+                          onProgressChange: async (progress) => {
+                            updateFileProgress(addedFileState.key, progress);
+                            if (progress === 100) {
+                              // wait 1 second to set it to complete
+                              // so that the user can see the progress bar at 100%
+                              await new Promise((resolve) => setTimeout(resolve, 1000));
+                              updateFileProgress(addedFileState.key, 'COMPLETE');
+                            }
+                          },
+                        });
+                        console.log(res);
+                      } catch (err) {
+                        updateFileProgress(addedFileState.key, 'ERROR');
+                      }
+                    })
+                  );
+                }}
+              />
             </div>
-            <div className={styles.chooseButton}>
-              <button>Chọn file</button>
-            </div>
+            {/* {urls?.url && <Link href={urls.url} target='_blank'>URL</Link>}
+            {urls?.thumbnailUrl && <Link href={urls.thumbnailUrl} target='_blank'>THUMBNAIL</Link>} */}
           </div>
 
-
-          {/* Danh sách file đã tải */}
-          <div className={styles.rightRectangle} >
-            <div className={styles.title}>CÁC FILE TẢI LÊN</div>
-            
-
-            {/* Danh sách file cụ thể */}
-            <div className={styles.list}>
-
+          {/* Uploaded Files Section */}
+          <div className={styles.rightRectangle}>
+            <div className={styles.box}>
+              <div className={styles.title}>CÁC FILE TẢI LÊN</div>
+              {/* File List */}
+              <div className={styles.list}>
+                <SelectedFiles value={fileStates} onChange={setFileStates} />
+              </div>
             </div>
-            
+
             <div className={styles.bottomSection}>
-              <button className={styles.printButton} >Tiến hành in</button>
+              <button className={styles.printButton}>Tiến hành in</button>
             </div>
-
           </div>
-
         </div>
       </div>
     </div>

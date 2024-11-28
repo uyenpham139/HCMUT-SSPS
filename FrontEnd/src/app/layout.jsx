@@ -1,12 +1,13 @@
 "use client";
-import localFont from "next/font/local";
+
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
 import Sidebar from "@/components/sidebar/Sidebar";
 import NavbarSpso from "@/components/navbarSpso/NavbarSpso";
-import { UserProvider, useUser } from "@/contexts/UserContext"; 
+import { UserProvider, useUser } from "@/contexts/UserContext";
+import { EdgeStoreProvider } from "@/lib/edgestore.ts";  // Import EdgeStoreProvider
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -15,9 +16,11 @@ const roboto = Roboto({
 
 export default function RootLayout({ children }) {
   return (
-    <UserProvider>
-      <MainLayout>{children}</MainLayout>
-    </UserProvider>
+    <EdgeStoreProvider>
+      <UserProvider>
+        <MainLayout>{children}</MainLayout>
+      </UserProvider>
+    </EdgeStoreProvider>
   );
 }
 

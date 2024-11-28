@@ -23,8 +23,8 @@ const FileUpload = () => {
         inputRef.current.click();
     };
 
-    return 
-        <div> FileUpload
+    return (
+        <div> 
             {/* File input element with a refernce*/}
             <input
                 ref={inputRef}
@@ -40,7 +40,7 @@ const FileUpload = () => {
                 </button>
             )}        
         </div>
-    
+    );
 };
 
 export default FileUpload;
