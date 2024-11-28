@@ -1,6 +1,4 @@
 import Image from 'next/image';
-import backgroundImage from '../../../../public/hcmutschool.jpg'; // Ensure this path is correct and the file exists
-import iconBK1 from '../../../..//public/HCMUT_official_logo.png'; // Ensure this path is correct and the file exists
 
 const styles = {
   container: {
@@ -130,7 +128,6 @@ return (
         <div style={backgroundImageStyle}></div>
         <div style={styles.topRectangle}>
             <div style={modifiedIconBKStyle}>
-                <Image src={iconBK1} alt="iconBK" layout="fill" objectFit="cover" />
             </div>
             <div style={{ marginLeft: '200px', marginTop: '15px', display: 'inline-block', fontSize: '24px' }}>SSPS</div>
             <a href="#" style={{ marginLeft: '500px', marginTop: '15px', display: 'inline-block', fontSize: '16px' }}>Trang chủ</a>
