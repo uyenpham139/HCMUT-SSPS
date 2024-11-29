@@ -1,0 +1,91 @@
+.container {
+    display: 'flex';
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: '100vh';
+    overflow: 'hidden'; /* Đảm bảo ảnh nền không kéo dài ngoài khung */
+    position: 'relative'; /* Cần thiết để `backgroundImageStyle` nằm bên trong*/
+}
+.topRectangle {
+    width: 100%;
+    height: 60px; /* Decreased height to 70px*/
+    color: 'white';
+    justify-Content: 'center';
+    background-color: '#F4FCFF';
+    position: 'absolute'; /* Ensure it sticks to the top*/
+    top: 0; /* Align to the top edge*/
+    font-weight: bold;
+    color: black;
+    font-family: 'Russo One, sans-serif';
+  }  
+
+.rectangle {
+    width: 1000px;
+    height: 450px;
+    background-color: '#F4FCFF';
+    border-radius: 20px;
+    z-index: 1;
+    top: 90; /* Align to the top edge*/
+    position: 'absolute'; /* Ensure it sticks to the top*/
+    font-family: 'Roboto, sans-serif';
+    font-weight: 'bold';
+    display: 'flex'; /* Add this line to align children next to each other*/
+  }
+
+.button {
+    font-weight: 'bold';
+    color: '#FFFFFF';
+    background-color: '#1488DB';
+    border-radius: 10px;
+    cursor: 'pointer';
+    white-space: 'nowrap'; /* Prevent text from wrapping*/
+    text-align: 'center'; /* Align text to the left*/
+    text-indent: 0; /* Add an indent to the text*/
+}
+
+.leftHalf {
+    width: 60%;
+    height: 100%;
+    background-color: '#F4FCFF';
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: 'flex';
+    flex-direction: 'column'; /* Align items in a column */
+    justify-content: 'flex-start'; /* Align items to the top */
+    font-size: 54px; /* Adjust font size as needed */
+    font-weight: 'bold';
+    color: '#1488DB';
+    font-family: 'Roboto, sans-serif';
+  }
+.rightHalf {
+    width: 40%;
+    height: 100%;
+    background-color: '#F4FCFF';
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: 'center';
+    display: 'flex';
+    flex-direction: 'column'; /* Align items in a column */
+    justify-content: 'flex-start';  /*Align items to the top*/
+    align-items: 'center'; /* Align items to the center */
+    font-size: 64px; /* Adjust font size as needed */
+    font-weight: 'bold';
+    color: '#FFFFFF';
+    font-family: 'Roboto, sans-serif';
+    margin-top: 0;
+  }
+.smallshowpttt {
+    margin-left: 40px;
+    margin-top: 35px;
+    width: 140px;
+    height: 60px;
+    background-color: 'white';
+    position: 'relative';
+    box-shadow: '1px 1px 4px gray'; /* Đổ bóng ở cạnh dưới và phải    */            
+    border-radius: 5px;
+    cursor:'pointer';
+    color: 'black';
+    text-indent: 30px;
+    font-weight: 'bold';
+}
