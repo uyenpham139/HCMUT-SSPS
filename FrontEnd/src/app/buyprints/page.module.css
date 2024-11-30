@@ -81,6 +81,33 @@
     font-weight: bold;
     color: black;
   }
+.leftHalf .orderItemContainer{
+    align-items: center;
+    margin-top: 20px;
+    width: 70%;
+    height: 50px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+  }
+  .leftHalf .orderItemContainer .title{
+    align-items: center;
+    margin-left: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    display: flex;
+    color: black;
+  }
+  .leftHalf .orderItemContainer .titledelete{
+    align-items: center;
+    margin-left: 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    display: flex;
+    color: black;
+    cursor: pointer;
+  }
 .leftHalf .button {
     margin-top: 35px;
     margin-left: 20px;

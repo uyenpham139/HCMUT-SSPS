@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 
 const PaperBox = ({ paperType, initialQuantity = 0, price }) => {

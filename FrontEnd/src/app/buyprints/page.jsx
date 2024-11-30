@@ -1,22 +1,59 @@
+"use client";
 import styles from './page.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import pickpagebuy from "@/components/pickpagebuy/pickpagebuy";
-import { IoMailOutline } from "react-icons/io5";
-import { LuPhone } from "react-icons/lu";
-import { FaRegBuilding } from "react-icons/fa";
 import { BiSolidArrowToLeft } from 'react-icons/bi';
+import { HiOutlineNewspaper } from 'react-icons/hi';
+import { AiFillDelete } from 'react-icons/ai';
 import visa from '@/assets/visa.jpg';
 import mastercard from '@/assets/mastercard.png';
 import momo from '@/assets/momo.png';
 import internetbanking from '@/assets/internetbanking.png'; 
+import React, { useState } from 'react';
 
 const LoginSD = ()=> {
-    const [selectedPaper, setSelectedPaper] = useState(null);
+    const [orders, setOrders] = useState([]); // Lưu danh sách đơn hàng
 
-    const handlePaperSelection = (type) => {
-      setSelectedPaper(type);
+    const handlePaperSelection = (type, price) => {
+      const existingOrder = orders.find((order) => order.paperType === type);
+  
+      if (existingOrder) {
+        setOrders(
+          orders.map((order) =>
+            order.paperType === type
+              ? { ...order, quantity: order.quantity + 1 }
+              : order
+          )
+        );
+      } else {
+        // Nếu loại giấy chưa tồn tại, thêm mới
+        setOrders([
+          ...orders,
+          { paperType: type, quantity: 1, price: price },
+        ]);
+      }
     };
+    const handleDeleteOrder = (type) => {
+        setOrders(orders.filter((order) => order.paperType !== type));
+      };
+      const handleQuantityChange = (type, delta) => {
+        setOrders(
+          orders
+            .map((order) =>
+              order.paperType === type
+                ? { ...order, quantity: Math.max(order.quantity + delta, 0) }
+                : order
+            )
+            .filter((order) => order.quantity > 0) // Loại bỏ mục có số lượng = 0
+        );
+      };
+    
+      // Tính tổng tiền
+      const totalPrice = orders.reduce(
+        (total, order) => total + order.quantity * parseFloat(order.price.replace('.', '')),
+        0
+      );
+
 return (
     <div className={styles.container}>
         <div className={styles.rectangle}>
@@ -29,22 +66,52 @@ return (
         </div>
             <div className={styles.titleContainer}>
                 <div className={styles.titleh1}>Chọn khổ giấy: </div>
-                <button className={`${styles.button} ${styles.titleh2}`}>A3</button>
-                <button className={`${styles.button} ${styles.titleh2}`}>A4</button>
-                <button className={`${styles.button} ${styles.titleh2}`}>A5</button>
+                <button
+                    className={`${styles.button} ${styles.titleh2}`}
+                    onClick={() => handlePaperSelection('A3')}
+                >A3
+                </button>
+                <button
+                    className={`${styles.button} ${styles.titleh2}`}
+                    onClick={() => handlePaperSelection('A4')}
+                >A4
+                </button>
+                <button
+                    className={`${styles.button} ${styles.titleh2}`}
+                    onClick={() => handlePaperSelection('A5')}
+                >A5
+                </button>
             </div>
 
 
                 <div className={styles.orderTitle}>Đơn hàng của bạn</div>
-                <div className={styles.orderContainer}>
-                <div className={styles.orderQuantity}>Số lượng </div>
-                <div className={styles.orderPrice}>Giá tiền </div>
+          <div className={styles.orderContainer}>
+          <div className={styles.orderQuantity}>Số lượng </div>
+          <div className={styles.orderPrice}>Giá tiền </div>
             </div>
 
+            <div className={styles.orderItemContainer}>
+            <AiFillDelete size={20} className={styles.titledelete} onClick={() => handleDeleteOrder('A3')} />
+            <HiOutlineNewspaper size={20} className={styles.title} />
+            <div className={styles.title}>Khổ giấy A3</div>
 
-            <div className={styles.totalContainer}>
-            <div className={styles.totalText}>Tổng cộng: </div>
+          {orders.map((order) => (
+            <div key={order.paperType} className={styles.orderItem}>
+              <div>{order.paperType}</div>
+              <div>
+                <button onClick={() => handleQuantityChange(order.paperType, -1)}>-</button>
+                {order.quantity}
+                <button onClick={() => handleQuantityChange(order.paperType, 1)}>+</button>
+              </div>
+              <div>{order.price}</div>
+              <button onClick={() => handleDeleteOrder(order.paperType)}>Xóa</button>
             </div>
+          ))}
+      </div>
+      <div className={styles.totalContainer}>
+        <div className={styles.totalText}>Tổng cộng: {totalPrice}</div>
+      </div>
+
         </div>
 
         <div className={styles.rightHalf}>
@@ -52,7 +119,7 @@ return (
             <div className={styles.subpaymentTitle}>Chọn phương thức thanh toán</div>
             <div className={styles.buttonContainer}>
             <button className={`${styles.button} ${styles.title}`}>
-            {/* <Image src={visa} alt="visalogo" objectFit="cover" className={styles.logo}/> */}
+            <Image src={visa} alt="visalogo" objectFit="cover" className={styles.logo}/>
             Visa
             </button>
             <button className={`${styles.button} ${styles.title}`}>
