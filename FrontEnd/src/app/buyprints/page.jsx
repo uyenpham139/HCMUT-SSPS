@@ -52,7 +52,7 @@ return (
             <div className={styles.paymentTitle}>Phương thức thanh toán</div>
             <div className={styles.subpaymentTitle}>Chọn phương thức thanh toán</div>
             <button className={`${styles.button} ${styles.title}`}>
-            <Image src={visa} alt="visalogo" objectFit="cover" className={styles.logo}/>
+            {/* <Image src={visa} alt="visalogo" objectFit="cover" className={styles.logo}/> */}
             Visa
             </button>
             <button className={styles.smallshowpttt}>MasterCard</button>

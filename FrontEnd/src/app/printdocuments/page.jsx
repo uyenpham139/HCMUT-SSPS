@@ -7,6 +7,7 @@ import { useEdgeStore } from '@/lib/edgestore.ts'; // Do not use .ts extension h
 import { MultiFileDropzone } from '../../components/multiFileDropZone/MultiFileDropZone.jsx'; 
 import { useState } from 'react';
 import SelectedFiles from '@/components/selectedFiles/SelectedFiles.jsx';
+import Link from 'next/link';
 
 const PrintDoc = () => {
   const [fileStates, setFileStates] = useState([]);
@@ -81,7 +82,7 @@ const PrintDoc = () => {
             </div>
 
             <div className={styles.bottomSection}>
-              <button className={styles.printButton}>Tiến hành in</button>
+              <Link className={styles.printButton} href='/preview'>Tiến hành in</Link>
             </div>
           </div>
         </div>
