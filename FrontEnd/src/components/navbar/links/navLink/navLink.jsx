@@ -7,8 +7,12 @@ import Link from 'next/link';
 const NavLink = ({item}) => {
 
     const pathName = usePathname();
+    console.log(pathName);
+
+    const isActive =
+        pathName === item.path || (pathName === "/preview" && item.path === "/printdocuments");
     return (
-        <Link href={item.path} className={`${styles.container} ${pathName === item.path && styles.active}`}>
+        <Link href={item.path} className={`${styles.container} ${isActive && styles.active}`}>
             {item.title}
         </Link>
     );
