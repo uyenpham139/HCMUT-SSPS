@@ -1,0 +1,33 @@
+.paper-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .quantity {
+    display: flex;
+    align-items: center;
+  }
+  
+  .button {
+    margin: 0 5px;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .span {
+    margin: 0 10px;
+  }
+  

@@ -9,15 +9,23 @@
     background-color: #F4FCFF;
 }
 .logo {
-  width: 45px;
-  height: 25px;
-  margin-right: 20px; 
+  
+  width: 40px; 
+  height: auto; 
+  margin-right: 20px;
+  display: block; /* Đảm bảo ảnh không bị lỗi inline */
+}
+.link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
 }
 .item {
   display: flex; /* Make the item a flex container */
   align-items: center; /* Align items vertically */
   color: black;
-    gap: 10px; /* Khoảng cách giữa các phần tử */
+  gap: 10px; /* Khoảng cách giữa các phần tử */
 }
 
 .item:hover {
@@ -29,7 +37,7 @@
 
 .rectangle {
     width: 80%;
-    height: 450px;
+    height: 550px;
     border-radius: 20px;
     z-index: 1;
     top: 90px; /* Align to the top edge*/
@@ -37,18 +45,8 @@
     font-family: 'Roboto, sans-serif';
     font-weight: bold;
     display: flex; /* Add this line to align children next to each other*/
+    
   }
-
-.button {
-    font-weight: bold;
-    color: #FFFFFF;
-    background-color: #1488DB;
-    border-radius: 10px;
-    cursor: pointer;
-    white-space: nowrap; /* Prevent text from wrapping*/
-    text-align: center; /* Align text to the left*/
-    text-indent: 0; /* Add an indent to the text*/
-}
 
 .leftHalf {
     width: 60%;
@@ -84,7 +82,7 @@
     color: black;
   }
 .leftHalf .button {
-    margin-top: 20px;
+    margin-top: 35px;
     margin-left: 20px;
     width: 70px;
     height: 30px;
@@ -123,8 +121,6 @@
     width: 40%;
     height: 100%;
     background-color: white;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
     text-align: left;
     display: flex;
     flex-direction: column; /* Align items in a column */
@@ -132,35 +128,48 @@
     align-items: left; /* Align items to the center */
     font-weight: bold;
     font-family: Inter;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);   
+  }
+  .rightHalf .buttonContainer {
+    margin-top: 40px;
+    margin-left: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; 
+    justify-content: center; 
   }
 .rightHalf .button {
-    margin-top: 20px;
-    width: 200px;
-    height: 60px;
-    background-color: #1488DB;
-    border-radius: 10px;
-    cursor: pointer;
-    color: #FFFFFF;
-    text-align: center;
-    font-weight: bold;
+  display: flex;
+  align-items: center; 
+  margin-top: 20px;
+  width: 150px;
+  height: 80px;
+  background-color: white;
+  border-radius: 10px;
+  border-color: white;
+  text-align: center;
+  justify-content: center;
+  flex-direction: row; 
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(82, 81, 81, 0.2);
   }
 .rightHalf .button:hover {
-    background-color: #0F5C8E;
+    background-color: #45aef5;
   }
 .rightHalf .button:active {
-    background-color: #0F5C8E;
+    background-color: #45aef5;
   }
 .rightHalf .button:disabled {
-    background-color: #0F5C8E;
+    background-color: #45aef5;
   }
 .rightHalf .button:disabled:hover {
-    background-color: #0F5C8E;
+    background-color: #45aef5;
   }
 .rightHalf .button:disabled:active {
-    background-color: #0F5C8E;
+    background-color: #45aef5;
   }
 .rightHalf .button:disabled {
-    background-color: #0F5C8E;
+    background-color:#45aef5;
   }
   .rightHalf .paymentTitle {
     margin-top: 20px;
@@ -176,54 +185,39 @@
     color: black;
     margin-left: 35px;
   }
-.rightHalf .smallshowpttt {
-    margin-left: 40px;
-    margin-top: 35px;
-    width: 140px;
-    height: 60px;
-    background-color: white;
-    position: relative;
-    box-shadow: 1px 1px 4px gray; /* Đổ bóng ở cạnh dưới và phải    */            
-    border-radius: 5px;
+  .rightHalf .confirmButton {
+    width: 80%;
+    height: 40px;
+    margin-top: 40px;
+    margin-left: 35px;
+    font-size: 20px; /* Adjust font size as needed */
+    font-weight: bold;
+    color: white;
+    background-color: #1488DB;
+    border-radius: 10px;
+    border-color: white;
     cursor: pointer;
-    color: black;
-    text-indent: 30px;
-    text-align: center;
+  }
+.rightHalf .backHomeButton{
+  width: 80%;
+  height: 40px;
+  margin-top: 20px;
+  margin-left: 35px;
+  font-size: 20px; /* Adjust font size as needed */
+  font-weight: bold;
+  color: #1488DB;
+  background-color: white;
+  border-radius: 10px;
+  border-color: #1488DB;
+  cursor: pointer;
+  text-align: center;
 }
+
 .rightHalf.title {
-    font-size: 10px; /* Adjust font size as needed */
+    display: flex;
+    font-size: 40px; /* Adjust font size as needed */
     font-weight: bold;
     color: black;
     font-family: 'Roboto, sans-serif';
-    font-weight: bold;
-    margin-left: 20px;
-}
-.backbutton {
-    margin-top: 20px;
-    margin-left: 20px;
-    font-size: small;
-    background-color: #1488DB;
-    border-radius: 10px;
-    cursor: pointer;
-    color: #FFFFFF;
-    text-align: center;
-    font-weight: bold;
-  }
-  .backbutton:hover {
-    background-color: #0F5C8E;
-  }
-  .backbutton:active {
-    background-color: #0F5C8E;
-  }
-  .backbutton:disabled {
-    background-color: #0F5C8E;
-  }
-  .backbutton:disabled:hover {
-    background-color: #0F5C8E;
-  }
-  .backbutton:disabled:active {
-    background-color: #0F5C8E;
-  }
-  .backbutton:disabled {
-    background-color: #0F5C8E;
+    margin-left: 10px;
 }
