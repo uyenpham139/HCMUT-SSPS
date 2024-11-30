@@ -1,17 +1,28 @@
 'use client';
 
-import Image from 'next/image';
 import styles from './page.module.css';
-import * as React from 'react';
-import { useEdgeStore } from '@/lib/edgestore.ts'; // Do not use .ts extension here
-import { MultiFileDropzone } from '../../components/multiFileDropZone/MultiFileDropZone.jsx'; 
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useEdgeStore } from '@/lib/edgestore.ts';
+import { MultiFileDropzone } from '../../components/multiFileDropZone/MultiFileDropZone.jsx';
 import SelectedFiles from '@/components/selectedFiles/SelectedFiles.jsx';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // Import useRouter hook
+import { useUrls } from '@/contexts/UrlContext.jsx';
 
 const PrintDoc = () => {
   const [fileStates, setFileStates] = useState([]);
-  const { edgestore } = useEdgeStore();  
+  const [showMessage, setShowMessage] = useState(''); // To control message visibility
+  const { edgestore } = useEdgeStore();
+  const { urls, setUrls } = useUrls();
+  const router = useRouter(); // Initialize useRouter for navigation
+
+  // Clear URLs when the component mounts
+  useEffect(() => {
+    setUrls([]); // Reset the URLs whenever the component is loaded
+  }, [setUrls]);
+
+  // Check if all files are completed
+  const areAllFilesComplete = fileStates.every((file) => file.progress === 'COMPLETE');
+  const isFileListEmpty = fileStates.length === 0;
 
   function updateFileProgress(key, progress) {
     setFileStates((fileStates) => {
@@ -26,6 +37,19 @@ const PrintDoc = () => {
     });
   }
 
+  const handlePrintClick = (e) => {
+    e.preventDefault(); // Prevent navigation by default
+
+    if (isFileListEmpty) {
+      setShowMessage("Vui lòng tải lên ít nhất một tệp để tiếp tục.");
+    } else if (!areAllFilesComplete) {
+      setShowMessage("Hãy đợi cho đến khi tất cả các tệp được tải lên hoàn tất.");
+    } else {
+      setShowMessage(""); // Hide the message if conditions are met
+      router.push('/preview'); // Programmatically navigate to /preview if conditions are met
+    }
+  };
+
   return (
     <div className={styles.container}>
       {/* Main Section */}
@@ -38,9 +62,7 @@ const PrintDoc = () => {
             <div className={styles.uploadRectangle}>
               <MultiFileDropzone
                 value={fileStates}
-                onChange={(files) => {
-                  setFileStates(files);
-                }}
+                onChange={(files) => setFileStates(files)}
                 onFilesAdded={async (addedFiles) => {
                   setFileStates([...fileStates, ...addedFiles]);
                   await Promise.all(
@@ -51,15 +73,17 @@ const PrintDoc = () => {
                           onProgressChange: async (progress) => {
                             updateFileProgress(addedFileState.key, progress);
                             if (progress === 100) {
-                              // wait 1 second to set it to complete
-                              // so that the user can see the progress bar at 100%
-                              await new Promise((resolve) => setTimeout(resolve, 1000));
+                              await new Promise((resolve) =>
+                                setTimeout(resolve, 1000)
+                              );
                               updateFileProgress(addedFileState.key, 'COMPLETE');
                             }
                           },
                         });
-                        console.log(res);
+
+                        setUrls((prevUrls) => [...prevUrls, res.url]);
                       } catch (err) {
+                        console.log(err);
                         updateFileProgress(addedFileState.key, 'ERROR');
                       }
                     })
@@ -67,22 +91,29 @@ const PrintDoc = () => {
                 }}
               />
             </div>
-            {/* {urls?.url && <Link href={urls.url} target='_blank'>URL</Link>}
-            {urls?.thumbnailUrl && <Link href={urls.thumbnailUrl} target='_blank'>THUMBNAIL</Link>} */}
           </div>
 
           {/* Uploaded Files Section */}
           <div className={styles.rightRectangle}>
             <div className={styles.box}>
               <div className={styles.title}>CÁC FILE TẢI LÊN</div>
-              {/* File List */}
               <div className={styles.list}>
                 <SelectedFiles value={fileStates} onChange={setFileStates} />
               </div>
             </div>
 
+            {/* Print button and message */}
             <div className={styles.bottomSection}>
-              <Link className={styles.printButton} href='/preview'>Tiến hành in</Link>
+              {/* Changed to a button */}
+              <button
+                className={styles.printButton}
+                onClick={handlePrintClick} // Handle click to control navigation
+              >
+                Tiến hành in
+              </button>
+              {showMessage && (
+                <p className={styles.errorMessage}>{showMessage}</p>
+              )}
             </div>
           </div>
         </div>

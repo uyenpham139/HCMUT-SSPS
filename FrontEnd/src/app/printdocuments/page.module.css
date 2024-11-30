@@ -5,7 +5,7 @@ body {
   background-color: var(--home-background-color);
   overflow-x: hidden;
 }
-  
+
 .container {
   height: 100vh;
   overflow: hidden;
@@ -38,9 +38,10 @@ body {
 
 .bodySection {
   display: flex;
-  height: 100%;
-  align-items: center;
+  flex-grow: 1;
+  align-items: flex-start;
   gap: 40px;
+  padding: 20px;
 }
 
 .leftRectangle {
@@ -49,8 +50,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 40px;
   gap: 15px;
+  margin-left: 40px;
 }
 
 .uploadRectangle {
@@ -62,7 +63,6 @@ body {
   width: 100px;
   height: 100px;
 }
-
 
 .uploadButton button {
   background-color: var(--button-primary-color);
@@ -103,14 +103,32 @@ body {
   font-size: 1.5em;
   font-weight: 600;
   padding: 0;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin: 20px 0 20px 20px;
 }
 
+/* The list should be scrollable when there are many files */
 .list {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-height: 300px; /* Set a maximum height for the list */
+  overflow-y: auto; /* Enable scrolling when content exceeds max height */
+  padding: 10px;
+  width: 100%;
+}
+
+/* Optional: Add custom scrollbar for better UI */
+.list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .uploadFile {
@@ -120,9 +138,11 @@ body {
 
 .bottomSection {
   display: flex;
+  flex-direction: column; /* Stack the button and message vertically */
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-top: 20px; /* Optional, to create some space between the sections */
 }
 
 .printButton {
@@ -140,7 +160,16 @@ body {
 
 .printButton:hover {
   background-color: var(--button-hover-color);
-} 
+}
+
+.errorMessage {
+  color: red;
+  font-weight: 400;
+  font-size: 1em;
+  text-align: center;
+  margin-top: 10px; /* Space between the button and message */
+}
+
 /* ========================= */
 /* Responsive Styles         */
 /* ========================= */

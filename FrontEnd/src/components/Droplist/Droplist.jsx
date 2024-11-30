@@ -1,15 +1,27 @@
+'use client';
+
 import Dropdown from 'react-dropdown';
+import React, { useState } from 'react';
+import Select from 'react-dropdown-select'
+import styles from './droplist.module.css';
 import 'react-dropdown/style.css';
 
-const options = [
-  'one', 'two', 'three'
-];
-const defaultOption = options[0];
+const Droplist = ({options}) => {
 
-const Droplist = () => {
+    const [value, setValue] = useState();
+    const defaultOption = options[0];
     return (
         <>
-            <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />
+            <div className={styles.box}>
+            <Select
+                options={options}
+                labelField="name"
+                valueField="id"
+                onChange={value => setValue(value)}
+                className={styles.select}
+            >
+            </Select>
+            </div>
         </>
     );
 };

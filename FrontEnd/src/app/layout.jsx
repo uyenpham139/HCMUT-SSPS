@@ -8,6 +8,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import NavbarSpso from "@/components/navbarSpso/NavbarSpso";
 import { UserProvider, useUser } from "@/contexts/UserContext";
 import { EdgeStoreProvider } from "@/lib/edgestore.ts";  // Import EdgeStoreProvider
+import { UrlProvider } from "@/contexts/UrlContext";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -18,7 +19,9 @@ export default function RootLayout({ children }) {
   return (
     <EdgeStoreProvider>
       <UserProvider>
-        <MainLayout>{children}</MainLayout>
+        <UrlProvider> 
+          <MainLayout>{children}</MainLayout>
+        </UrlProvider>
       </UserProvider>
     </EdgeStoreProvider>
   );
