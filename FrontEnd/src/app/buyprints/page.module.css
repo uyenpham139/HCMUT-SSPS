@@ -207,6 +207,7 @@
 .rightHalf .button {
   display: flex;
   align-items: center; 
+  cursor: pointer;
   margin-top: 20px;
   width: 150px;
   height: 80px;
@@ -223,8 +224,8 @@
     background-color: #45aef5;
   }
 .rightHalf .button:active {
-    background-color: #45aef5;
-  }
+  background-color: #f1f446;
+}
 .rightHalf .button:disabled {
     background-color: #45aef5;
   }

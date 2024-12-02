@@ -132,7 +132,9 @@ return (
             </button>
             </div>
             <div className={styles.confirmButtons}>
+                <Link href="/momo" className={styles.link}>
                 <button className={styles.confirmButton}>Xác nhận</button>
+                </Link>
                 <button className={styles.backHomeButton}>
                     <Link href="/"> Quay lại trang chủ
                     </Link>
