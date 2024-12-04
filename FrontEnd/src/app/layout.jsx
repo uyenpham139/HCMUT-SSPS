@@ -28,17 +28,27 @@ export default function RootLayout({ children }) {
 }
 
 const MainLayout = ({ children }) => {
-  const { userRole } = useUser();  
+  const { userRole, isLoggedIn } = useUser(); // Add isLoggedIn to check login state
+
   return (
     <html lang="en">
       <body className={roboto.className}>
-        {userRole === "student" ? (
+        {!isLoggedIn ? (
+          // Render a fallback layout for not-logged-in users
           <>
             <Navbar />
-            {children}
+            <main>{children}</main>
+            <Footer />
+          </>
+        ) : userRole === "student" ? (
+          // Render the student layout
+          <>
+            <Navbar />
+            <main>{children}</main>
             <Footer />
           </>
         ) : (
+          // Render the SPSO layout
           <div className="container">
             <div className="sidebar">
               <Sidebar />

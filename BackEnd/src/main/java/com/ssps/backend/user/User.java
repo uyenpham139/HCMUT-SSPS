@@ -10,6 +10,7 @@ public class User {
     private String username;
     private String password; // Store as a hashed value
     private String role; // "STUDENT" or "ADMIN"
+    private int paperBalance = 100;
 
     public User() {
     }
@@ -87,4 +88,24 @@ public class User {
     public String toString() {
         return "User(id=" + this.getId() + ", username=" + this.getUsername() + ", password=" + this.getPassword() + ", role=" + this.getRole() + ")";
     }
+
+    public int getPaperBalance() {
+        return this.paperBalance;
+    }
+
+    public void setPaperBalance(int paperBalance) {
+        this.paperBalance = paperBalance;
+    }
+
+    public void deductPaperBalance(int pages) {
+        if (this.paperBalance < pages) {
+            throw new IllegalArgumentException("Insufficient paper balance");
+        }
+        this.paperBalance -= pages;
+    }
+
+    public void addPaperBalance(int pages) {
+        this.paperBalance += pages;
+    }
+
 }
