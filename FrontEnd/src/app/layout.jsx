@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <EdgeStoreProvider>
       <UserProvider>
-        <UrlProvider> 
+        <UrlProvider>
           <MainLayout>{children}</MainLayout>
         </UrlProvider>
       </UserProvider>
@@ -28,27 +28,24 @@ export default function RootLayout({ children }) {
 }
 
 const MainLayout = ({ children }) => {
-  const { userRole, isLoggedIn } = useUser(); // Add isLoggedIn to check login state
+  const { isLoggedIn, userRole } = useUser();
 
   return (
     <html lang="en">
       <body className={roboto.className}>
         {!isLoggedIn ? (
-          // Render a fallback layout for not-logged-in users
           <>
             <Navbar />
             <main>{children}</main>
             <Footer />
           </>
         ) : userRole === "student" ? (
-          // Render the student layout
           <>
             <Navbar />
             <main>{children}</main>
             <Footer />
           </>
         ) : (
-          // Render the SPSO layout
           <div className="container">
             <div className="sidebar">
               <Sidebar />

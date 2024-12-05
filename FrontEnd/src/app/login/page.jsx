@@ -21,6 +21,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!roleSelected) {
+      alert("Please select a role before logging in.");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:8080/api/auth/login", {
         method: "POST",
@@ -35,6 +40,7 @@ const Login = () => {
         console.log("Login successful!");
         login(roleSelected); // Update the global session state with the selected role
 
+        // Redirect based on role
         if (roleSelected === "student") {
           router.push("/");
         } else if (roleSelected === "spso") {
@@ -70,7 +76,7 @@ const Login = () => {
             </>
           ) : (
             <>
-              <form action="" method="post" onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 <div className={styles.inputBox}>
                   <input
                     type="text"

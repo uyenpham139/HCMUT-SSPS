@@ -34,15 +34,16 @@ const links = [
     path: "/contact",
   },
 ];
+
 const Links = () => {
-  const { isLoggedIn, userRole, logout } = useUser(); // Access session info and logout function
+  const { isLoggedIn, logout } = useUser(); // Access session info and logout function
   const [open, setOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
       await fetch("http://localhost:8080/api/auth/logout", {
         method: "POST",
-        credentials: "include",
+        credentials: "include", // Include the cookie for session management
       });
       logout(); // Update the session state globally
       alert("Logged out successfully!");
@@ -87,7 +88,6 @@ const Links = () => {
         ))}
       </div>
     </div>
-
   );
 };
 
