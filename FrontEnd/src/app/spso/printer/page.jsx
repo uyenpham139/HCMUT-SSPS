@@ -7,6 +7,7 @@ import { IoIosAddCircle } from "react-icons/io";
 
 const Printer = () => {
   const [printers, setPrinters] = useState([]);
+  const [locations, setLocations] = useState([]); // To store distinct locations
   const [status, setStatus] = useState(""); // For status filter
   const [location, setLocation] = useState(""); // For location filter
 
@@ -21,7 +22,21 @@ const Printer = () => {
         console.error("Error fetching printers:", error);
       }
     };
+
+    const fetchLocations = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8080/api/printers/locations"
+        );
+        const data = await response.json();
+        setLocations(data);
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+      }
+    };
+
     fetchPrinters();
+    fetchLocations();
   }, []);
 
   // Handle filter change for status
@@ -50,9 +65,9 @@ const Printer = () => {
           <label htmlFor="status">Trạng thái: </label>
           <select name="Status" id="status" onChange={handleStatusChange}>
             <option value="">Chọn trạng thái</option>
-            <option value="ACTIVE">Đang hoạt động</option>
-            <option value="ON_HOLD">Tạm dừng hoạt động</option>
-            <option value="INACTIVE">Ngừng hoạt động</option>
+            <option value="AVAILABLE">Đang hoạt động</option>
+            <option value="BUSY">Tạm dừng hoạt động</option>
+            <option value="OUT_OF_SERVICE">Ngừng hoạt động</option>
           </select>
         </div>
 
@@ -60,9 +75,11 @@ const Printer = () => {
           <label htmlFor="location">Địa điểm: </label>
           <select name="Location" id="location" onChange={handleLocationChange}>
             <option value="">Chọn địa điểm</option>
-            <option value="Campus B4">Campus B4</option>
-            <option value="Library">Library</option>
-            <option value="Campus A1">Campus A1</option>
+            {locations.map((loc) => (
+              <option key={loc} value={loc}>
+                {loc}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -76,7 +93,9 @@ const Printer = () => {
         {filteredPrinters.length === 0 ? (
           <p>No printers found</p>
         ) : (
-          filteredPrinters.map((printer) => <Card key={printer.id} printer={printer} />)
+          filteredPrinters.map((printer) => (
+            <Card key={printer.id} printer={printer} />
+          ))
         )}
       </div>
     </div>

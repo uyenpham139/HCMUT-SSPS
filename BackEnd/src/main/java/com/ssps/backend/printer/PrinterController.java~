@@ -83,15 +83,4 @@ public class PrinterController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("Printer not found"));
     }
 
-    @GetMapping("/locations")
-    public ResponseEntity<List<String>> getDistinctLocations() {
-        List<String> locations = printerRepository.findDistinctLocations()
-                .stream()
-                .map(Printer::getLocation)
-                .distinct()
-                .toList();
-        return ResponseEntity.ok(locations);
-    }
-
-
 }
