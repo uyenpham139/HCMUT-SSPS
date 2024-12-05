@@ -1,0 +1,42 @@
+.container {
+  padding: 20px;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.saveButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+}
+
+.resetButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+}

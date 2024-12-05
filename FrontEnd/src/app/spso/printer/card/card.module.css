@@ -1,97 +1,129 @@
 .container {
-    background-color: var(--white-text);
-    color: var(--text);
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    gap: 20px;
-    cursor: pointer;
-    width: 100%;
-    transition: 0.2s ease;
-    align-items: center;
-    margin-bottom: 10px;
+  background-color: var(--white-text);
+  color: var(--text);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  gap: 20px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.2s ease;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .editButton {
-    background: transparent;
-    border: none;
-    height: 100%;
-    width: 10%;
-    cursor: pointer;
-    color: var(--text);
-    transition: 0.2s ease;
+  background: transparent;
+  border: none;
+  height: 100%;
+  width: 10%;
+  cursor: pointer;
+  color: var(--text);
+  transition: 0.2s ease;
 }
 
 .editButton:hover {
-    color: var(--button-hover-color);
+  color: var(--button-hover-color);
 }
 
 .printerInfo {
-    width: 30%;
+  width: 30%;
 }
 
 .printerInfo p {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .detail {
-    width: 50%;
-    font-size: 14px;
-    font-weight: 300;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  width: 50%;
+  font-size: 14px;
+  font-weight: 300;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .detail p {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .deleteButton {
-    background: transparent;
-    border: none;
-    width: 10%;
-    height: 100%;
-    color: rgb(235, 29, 29);
-    cursor: pointer;
-    transition: 0.2s ease;
+  background: transparent;
+  border: none;
+  width: 10%;
+  height: 100%;
+  color: rgb(235, 29, 29);
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .deleteButton:hover {
-    color: rgb(173, 22, 22);
+  color: rgb(173, 22, 22);
 }
 
 .text {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-
 .active {
-    background-color: rgb(137, 238, 137);
-    color: rgb(13, 156, 13);
-    font-weight: 500;
-    font-size: 14px;
-    padding: 5px;
-    border-radius: 10px;
+  background-color: rgb(137, 238, 137);
+  color: rgb(13, 156, 13);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .onHold {
-    background-color: rgb(250, 233, 155);
-    color: rgb(238, 149, 16);
-    font-weight: 500;
-    font-size: 14px;
-    padding: 5px;
-    border-radius: 10px;
+  background-color: rgb(250, 233, 155);
+  color: rgb(238, 149, 16);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .inactive {
-    background-color: rgb(236, 153, 153);
-    color: rgb(209, 14, 14);
-    font-weight: 500;
-    font-size: 14px;
-    padding: 5px;
-    border-radius: 10px;
+  background-color: rgb(236, 153, 153);
+  color: rgb(209, 14, 14);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.saveButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
 }
