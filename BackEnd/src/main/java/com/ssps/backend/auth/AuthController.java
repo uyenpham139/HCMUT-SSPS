@@ -26,7 +26,7 @@
             if (!user.getPassword().equals(loginRequest.getPassword())) { // Use hashing in production
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
             }
-    
+
             // Store user details in session
             session.setAttribute("user", user);
             return ResponseEntity.ok("Login successful");

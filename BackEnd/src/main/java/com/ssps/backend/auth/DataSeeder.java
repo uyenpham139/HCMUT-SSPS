@@ -18,6 +18,7 @@ public class DataSeeder {
     public void seedUsers() {
         // Create or update student
         User student = userRepository.findByUsername("student1").orElse(new User());
+        student.setId("2252360");
         student.setUsername("student1");
         student.setPassword("password123"); // Hash in production
         student.setRole("STUDENT");
@@ -25,6 +26,7 @@ public class DataSeeder {
 
         // Create or update admin
         User admin = userRepository.findByUsername("admin1").orElse(new User());
+        admin.setId("1234567");
         admin.setUsername("admin1");
         admin.setPassword("adminpassword"); // Hash in production
         admin.setRole("SPSO");
