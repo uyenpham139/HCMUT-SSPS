@@ -14,9 +14,9 @@ public class Printer {
     private int paperCapacity;
 
     // New fields
-    private int requestsReceived =0;
-    private int requestsProcessing=0;
-    private int requestsProcessed=0;
+    private int requestsReceived =10;
+    private int requestsProcessing=10;
+    private int requestsProcessed=10;
     private int paperAvailable;
 
     // Getters and setters
