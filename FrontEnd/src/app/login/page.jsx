@@ -1,51 +1,54 @@
 "use client";
+
 import Image from 'next/image';
 import styles from './page.module.css';
-import printer from '@/assets/printer.png'; 
+import printer from '@/assets/printer.png';
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation'; // for routes
-import { useUser } from "@/contexts/UserContext";  // Import the user context
+import { useRouter } from 'next/navigation';
+import { useUser } from "@/contexts/UserContext";
 
 const Login = () => {
-  const [roleSelected, setRoleSelected] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  // Initialize the router
+  const { login } = useUser(); // Access the login function from the context
+  const [username, setUsername] = useState(''); // State for username
+  const [password, setPassword] = useState(''); // State for password
+  const [roleSelected, setRoleSelected] = useState(null); // State for role selection
   const router = useRouter();
-  // Access the updateUserRole function from the context
-  const { updateUserRole } = useUser();
 
   const handleRoleSelect = (role) => {
     setRoleSelected(role);
-    console.log("Selected role:", role);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();  // Prevent default form behavior (page reload)
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+        credentials: "include",
+      });
 
-    // Simulate the login process (replace with actual logic for authentication)
-    const loginSuccessful = true;
-    
+      if (response.ok) {
+        console.log("Login successful!");
+        login(roleSelected); // Update the global session state with the selected role
 
-    if (loginSuccessful) {
-      console.log('Login successful!');
-      updateUserRole(roleSelected);
-      // Navigate based on the role after successful login
-      if (roleSelected === 'student') {
-        router.push('/'); // Redirect to homepage for students
-      } else if (roleSelected === 'spso') {
-        router.push('/spso/dashboard'); // Redirect to SPSO dashboard
+        if (roleSelected === "student") {
+          router.push("/");
+        } else if (roleSelected === "spso") {
+          router.push("/spso/dashboard");
+        }
+      } else {
+        const errorData = await response.json();
+        alert(errorData.message || "Login failed. Please check your credentials.");
       }
-    } else {
-      console.log('Navigating to SPSO dashboard...');
-      // Handle login failure here (e.g., show an error message)
-      console.log('Login failed');
+    } catch (error) {
+      console.error("An error occurred during login:", error);
+      alert("An unexpected error occurred. Please try again later.");
     }
   };
-
-  
 
   return (
     <div className={styles.container}>
@@ -53,9 +56,8 @@ const Login = () => {
         <div className={styles.loginForm}>
           <h2 className={styles.title}>Đăng nhập</h2>
 
-          {/* Select role xong rồi mới đăng nhập bình thường */}
           {!roleSelected ? (
-            <> 
+            <>
               <div className={styles.options}>
                 <p>Đăng nhập tài khoản của bạn: </p>
                 <button className={styles.role} onClick={() => handleRoleSelect('student')}>
@@ -67,29 +69,42 @@ const Login = () => {
               </div>
             </>
           ) : (
-            <> 
-              <form action="" method='post' onSubmit={handleSubmit}>
+            <>
+              <form action="" method="post" onSubmit={handleSubmit}>
                 <div className={styles.inputBox}>
-                    <input type="text" className={styles.input} name="username" onChange={(e) => setUsername(e.target.value)} required/>
-                    <label htmlFor="username">Tên đăng nhập</label>
+                  <input
+                    type="text"
+                    className={styles.input}
+                    name="username"
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                  />
+                  <label htmlFor="username">Tên đăng nhập</label>
                 </div>
                 <div className={styles.inputBox}>
-                    <input type="password" className={styles.input} name="password" onChange={(e) => setPassword(e.target.value)} required/>
-                    <label htmlFor="password">Mật khẩu</label>
+                  <input
+                    type="password"
+                    className={styles.input}
+                    name="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <label htmlFor="password">Mật khẩu</label>
                 </div>
-                <button type="submit" className={styles.loginButton} >Đăng nhập</button>
+                <button type="submit" className={styles.loginButton}>
+                  Đăng nhập
+                </button>
               </form>
             </>
           )}
-
         </div>
         <div className={styles.text}>
           <h2>Welcome <br />back!</h2>
-          <Image src={printer} alt="printer" objectFit="cover" className={styles.printerImg}/>
+          <Image src={printer} alt="printer" objectFit="cover" className={styles.printerImg} />
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Login;

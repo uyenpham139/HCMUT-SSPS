@@ -1,23 +1,31 @@
 "use client";
-import React, { createContext, useContext, useState } from "react";
+
+import { createContext, useContext, useState } from "react";
 
 // Create the context
 const UserContext = createContext();
 
-// Custom hook to use the user context
-export const useUser = () => useContext(UserContext);
-
-// UserContext provider component
+// Create a provider component
 export const UserProvider = ({ children }) => {
-  const [userRole, setUserRole] = useState("student");  // Default role, can be "student" or "spso"
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  const [userRole, setUserRole] = useState(null); // Track user role (e.g., "STUDENT", "SPSO")
 
-  const updateUserRole = (role) => {
+  const login = (role) => {
+    setIsLoggedIn(true);
     setUserRole(role);
   };
 
+  const logout = () => {
+    setIsLoggedIn(false);
+    setUserRole(null);
+  };
+
   return (
-    <UserContext.Provider value={{ userRole, updateUserRole }}>
+    <UserContext.Provider value={{ isLoggedIn, userRole, login, logout }}>
       {children}
     </UserContext.Provider>
   );
 };
+
+// Custom hook for using the context
+export const useUser = () => useContext(UserContext);
