@@ -10,7 +10,7 @@ public class SystemPolicy {
     private int defaultPageAllocation = 100; // Default values
     private int maxFileSize = 10;
     private String[] permittedFileTypes = {"PDF", "DOCX", "TXT"};
-    private double printingCostPerPage = 500;
+    private double printingCostPerPage = 0.1;
 
     // Getters and Setters
     public String getId() {

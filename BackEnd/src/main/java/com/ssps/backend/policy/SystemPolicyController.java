@@ -6,35 +6,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/policies")
 public class SystemPolicyController {
+    private final SystemPolicyService systemPolicyService;
 
-    private final SystemPolicy systemPolicy;
-
-    public SystemPolicyController(SystemPolicy systemPolicy) {
-        this.systemPolicy = systemPolicy;
+    public SystemPolicyController(SystemPolicyService systemPolicyService) {
+        this.systemPolicyService = systemPolicyService;
     }
 
-    // Get current system policy
     @GetMapping
     public ResponseEntity<SystemPolicy> getPolicy() {
-        return ResponseEntity.ok(systemPolicy);
+        return ResponseEntity.ok(systemPolicyService.getPolicy());
     }
 
-    // Update system policy
     @PutMapping
     public ResponseEntity<SystemPolicy> updatePolicy(@RequestBody SystemPolicy updatedPolicy) {
-        if (updatedPolicy.getDefaultPageAllocation() != 0) {
-            systemPolicy.setDefaultPageAllocation(updatedPolicy.getDefaultPageAllocation());
-        }
-        if (updatedPolicy.getMaxFileSize() != 0) {
-            systemPolicy.setMaxFileSize(updatedPolicy.getMaxFileSize());
-        }
-        if (updatedPolicy.getPermittedFileTypes() != null) {
-            systemPolicy.setPermittedFileTypes(updatedPolicy.getPermittedFileTypes());
-        }
-        if (updatedPolicy.getPrintingCostPerPage() != 0) {
-            systemPolicy.setPrintingCostPerPage(updatedPolicy.getPrintingCostPerPage());
-        }
-
-        return ResponseEntity.ok(systemPolicy);
+        systemPolicyService.updatePolicy(updatedPolicy);
+        return ResponseEntity.ok(systemPolicyService.getPolicy());
     }
 }

@@ -7,7 +7,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Sidebar from "@/components/sidebar/Sidebar";
 import NavbarSpso from "@/components/navbarSpso/NavbarSpso";
 import { UserProvider, useUser } from "@/contexts/UserContext";
-import { EdgeStoreProvider } from "@/lib/edgestore.ts";  // Import EdgeStoreProvider
+import { EdgeStoreProvider } from "@/lib/edgestore.ts"; // Import EdgeStoreProvider
 import { UrlProvider } from "@/contexts/UrlContext";
 
 const roboto = Roboto({

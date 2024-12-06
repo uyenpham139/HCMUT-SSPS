@@ -31,7 +31,7 @@ public class DataSeeder {
         student2.setUsername("student2");
         student2.setPassword("password123"); // Hash in production
         student2.setRole("STUDENT");
-        userRepository.save(student2);
+        userRepository.save(student);
 
         // Create or update admin
         User admin = userRepository.findByUsername("admin1").orElse(new User());

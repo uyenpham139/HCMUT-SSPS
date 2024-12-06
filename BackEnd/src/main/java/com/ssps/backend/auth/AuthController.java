@@ -46,7 +46,16 @@
             if (user == null) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Not logged in");
             }
-            return ResponseEntity.ok(user);
+            AuthResponse response = new AuthResponse(
+                    user.getDisplayName(),
+                    user.getUsername(),
+                    user.getRole(),
+                    user.getPaperBalance()
+            );
+            return ResponseEntity.ok(response);
         }
     }
+
+
+
 

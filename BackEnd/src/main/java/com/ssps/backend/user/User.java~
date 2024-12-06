@@ -109,11 +109,4 @@ public class User {
         this.paperBalance += pages;
     }
 
-    public String getDisplayName() {
-        return this.displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
 }
