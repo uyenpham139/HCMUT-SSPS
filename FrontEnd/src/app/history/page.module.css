@@ -1,0 +1,59 @@
+.container {
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #1488db;
+  color: white;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.error {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  color: red;
+}
+
+.notLoggedIn {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.notLoggedIn a {
+  color: #1488db;
+  text-decoration: none;
+}
+
+.notLoggedIn a:hover {
+  text-decoration: underline;
+}

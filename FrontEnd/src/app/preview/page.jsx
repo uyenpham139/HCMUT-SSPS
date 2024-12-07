@@ -6,6 +6,7 @@ import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import "@cyntler/react-doc-viewer/dist/index.css";
 import Link from "next/link";
 import Droplist from "@/components/Droplist/Droplist.jsx";
+import { useUrls } from "@/contexts/UrlContext";
 
 import { copyOptions } from "@/components/Droplist/data/copyOptions.js";
 import { setupOptions } from "@/components/Droplist/data/setupOptions.js";
@@ -14,7 +15,14 @@ import { paperSizeOptions } from "@/components/Droplist/data/paperSizeOptions.js
 import { colorOptions } from "@/components/Droplist/data/colorOptions.js";
 
 const Preview = () => {
-  const [urls] = useState([]); // Replace with actual URLs
+  const { urls } = useUrls(); // Access the global URLs
+
+  const docs = urls.map((url) => ({
+    uri: url,
+    fileType: url.split(".").pop(),
+    fileName: url.split("/").pop(),
+  }));
+
   const [printerOptions, setPrinterOptions] = useState([]);
   const [selectedPrinter, setSelectedPrinter] = useState(null);
   const [formData, setFormData] = useState({
@@ -65,6 +73,7 @@ const Preview = () => {
 
       if (response.ok) {
         alert("Print request submitted successfully!");
+        window.location.href = "/printdocuments";
       } else {
         const error = await response.json();
         alert(`Print request failed: ${error.message}`);
@@ -78,11 +87,7 @@ const Preview = () => {
   return (
     <div className={styles.container}>
       <div className={styles.viewSection}>
-        <DocViewer
-          documents={urls.map((url) => ({ uri: url }))}
-          pluginRenderers={DocViewerRenderers}
-        />
-        ;
+        <DocViewer documents={docs} pluginRenderers={DocViewerRenderers} />;
       </div>
       <div className={styles.settingSection}>
         <h1>In</h1>

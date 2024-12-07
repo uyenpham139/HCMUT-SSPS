@@ -69,4 +69,18 @@ public class PrintHistoryController {
 
         return ResponseEntity.ok(Map.of("message", "Print history created successfully"));
     }
+
+    @GetMapping("/user")
+    public ResponseEntity<?> getPrintHistoryForUser(HttpSession session) {
+        // Ensure the user is logged in
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("message", "Not logged in"));
+        }
+
+        // Retrieve the print history for the user
+        List<PrintHistory> userPrintHistory = printHistoryRepository.findByStudentId(user.getId());
+        return ResponseEntity.ok(userPrintHistory);
+    }
 }
