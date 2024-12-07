@@ -10,10 +10,13 @@ public class PrintHistory {
     private String id;
     private String studentId;
     private String printerId;
+    private String fileName;
     private int numberOfPages;
-    private String paperSize;
-    private boolean doubleSided;
-    private String status; // "completed", "failed", etc.
+    private int numberOfCopies;
+    private String side; // "oneSided" or "doubleSided"
+    private String orientation; // "landscape" or "portrait"
+    private String paperSize; // "A4", "A3", or "A5"
+    private String color; // "blackAndWhite" or "colored"
     private String timestamp;
 
     // Getters and setters
@@ -41,12 +44,44 @@ public class PrintHistory {
         this.printerId = printerId;
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
     public int getNumberOfPages() {
         return numberOfPages;
     }
 
     public void setNumberOfPages(int numberOfPages) {
         this.numberOfPages = numberOfPages;
+    }
+
+    public int getNumberOfCopies() {
+        return numberOfCopies;
+    }
+
+    public void setNumberOfCopies(int numberOfCopies) {
+        this.numberOfCopies = numberOfCopies;
+    }
+
+    public String getSide() {
+        return side;
+    }
+
+    public void setSide(String side) {
+        this.side = side;
+    }
+
+    public String getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(String orientation) {
+        this.orientation = orientation;
     }
 
     public String getPaperSize() {
@@ -57,20 +92,12 @@ public class PrintHistory {
         this.paperSize = paperSize;
     }
 
-    public boolean isDoubleSided() {
-        return doubleSided;
+    public String getColor() {
+        return color;
     }
 
-    public void setDoubleSided(boolean doubleSided) {
-        this.doubleSided = doubleSided;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getTimestamp() {

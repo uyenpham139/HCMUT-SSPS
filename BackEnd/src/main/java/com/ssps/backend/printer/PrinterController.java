@@ -93,5 +93,15 @@ public class PrinterController {
         return ResponseEntity.ok(locations);
     }
 
+    // Get all available printers
+    @GetMapping("/available")
+    public ResponseEntity<List<Printer>> getAvailablePrinters() {
+        List<Printer> availablePrinters = printerRepository.findAll()
+                .stream()
+                .filter(printer -> "available".equalsIgnoreCase(printer.getStatus())) // Filter by status or condition
+                .toList();
+        return ResponseEntity.ok(availablePrinters);
+    }
+
 
 }

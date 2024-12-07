@@ -1,29 +1,27 @@
-'use client';
+import React, { useState } from "react";
+import Select from "react-dropdown-select";
+import styles from "./droplist.module.css";
 
-import Dropdown from 'react-dropdown';
-import React, { useState } from 'react';
-import Select from 'react-dropdown-select'
-import styles from './droplist.module.css';
-import 'react-dropdown/style.css';
+const Droplist = ({ options, onChange }) => {
+  const [value, setValue] = useState([]);
 
-const Droplist = ({options}) => {
+  const handleChange = (selected) => {
+    setValue(selected);
+    if (onChange) onChange(selected);
+  };
 
-    const [value, setValue] = useState();
-    const defaultOption = options[0];
-    return (
-        <>
-            <div className={styles.box}>
-            <Select
-                options={options}
-                labelField="name"
-                valueField="id"
-                onChange={value => setValue(value)}
-                className={styles.select}
-            >
-            </Select>
-            </div>
-        </>
-    );
+  return (
+    <div className={styles.box}>
+      <Select
+        options={options}
+        labelField="name"
+        valueField="id"
+        onChange={handleChange}
+        className={styles.select}
+        values={value}
+      />
+    </div>
+  );
 };
 
 export default Droplist;

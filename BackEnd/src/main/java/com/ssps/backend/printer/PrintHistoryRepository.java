@@ -14,9 +14,6 @@ public interface PrintHistoryRepository extends MongoRepository<PrintHistory, St
     // Find all print history for a specific printer
     List<PrintHistory> findByPrinterId(String printerId);
 
-    // Find print history by status (optional)
-    List<PrintHistory> findByStatus(String status);
-
     // Find print history within a specific paper size
     List<PrintHistory> findByPaperSize(String paperSize);
 }
