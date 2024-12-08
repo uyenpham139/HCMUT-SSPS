@@ -1,40 +1,85 @@
 .container {
-    background-color: var(--navbar-spso-soft-color);
-    color: var(--text);
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    gap: 20px;
-    cursor: pointer;
-    width: 100%;
-    transition: 0.2s ease;
+  margin: 20px auto;
+  max-width: 1000px;
+  padding: 20px;
+  background-color: #f1f6f6;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto", sans-serif;
 }
 
-.container:hover {
-    background-color: var(--navbar-spso-color);
+.heading {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30px;
 }
 
-.text {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.subHeading {
+  margin-top: 50px;
+  font-size: 22px;
+  font-weight: 500;
+  color: #333;
 }
 
-.number {
-    font-size: 24px;
-    font-weight: 500;
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.detail {
-    font-size: 14px;
-    font-weight: 300;
+.card {
+  background-color: #ffffff;
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.positive {
-    color: rgb(25, 168, 25);
-    font-weight: 500;
+.card:hover {
+  transform: translateY(-5px);
+  background-color: #1488db;
+  color: #ffffff;
 }
 
-.negative {
-    color: rgb(212, 5, 5);
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #1488db;
+  color: white;
+}
+
+.doubleSided {
+  color: #2ca02c; /* Green for double-sided */
+}
+
+.singleSided {
+  color: #d62728; /* Red for single-sided */
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 18px;
+  margin: 20px;
 }
