@@ -87,7 +87,7 @@ const AdminBuyReceipts = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}>Admin: Tất cả hóa đơn mua giấy</h1>
+      <h1 className={styles.heading}>Tất cả hóa đơn mua giấy</h1>
 
       {/* Filters */}
       <div className={styles.filters}>
@@ -114,11 +114,11 @@ const AdminBuyReceipts = () => {
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Transaction ID</th>
-            <th>User ID</th>
-            <th>Pages Purchased</th>
-            <th>Total Cost</th>
-            <th>Purchase Date</th>
+            <th>Mã giao dịch</th>
+            <th>MSSC</th>
+            <th>Số Trang Mua</th>
+            <th>Tổng tiền</th>
+            <th>Thời điểm giao dịch</th>
           </tr>
         </thead>
         <tbody>

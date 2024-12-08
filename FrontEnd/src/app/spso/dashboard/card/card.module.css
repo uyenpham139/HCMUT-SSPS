@@ -1,85 +1,69 @@
 .container {
-  margin: 20px auto;
-  max-width: 1000px;
-  padding: 20px;
-  background-color: #f1f6f6;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: "Roboto", sans-serif;
-}
-
-.heading {
-  text-align: center;
-  font-size: 28px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 30px;
-}
-
-.subHeading {
-  margin-top: 50px;
-  font-size: 22px;
-  font-weight: 500;
-  color: #333;
-}
-
-.cards {
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.card {
-  background-color: #ffffff;
-  color: #333;
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
-  cursor: pointer;
+  justify-content: center;
+  margin: 20px auto;
   width: 100%;
-  max-width: 300px;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto", sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
 }
 
-.card:hover {
+.container:hover {
   transform: translateY(-5px);
-  background-color: #1488db;
-  color: #ffffff;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  background-color: #1488db; /* Change background to blue */
+  color: #ffffff; /* Change text color to white on hover */
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+.icon {
+  background-color: #f1f6f6;
+  padding: 12px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  color: #1488db; /* Default icon color */
 }
 
-.table th,
-.table td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
-}
-
-.table th {
-  background-color: #1488db;
-  color: white;
-}
-
-.doubleSided {
-  color: #2ca02c; /* Green for double-sided */
-}
-
-.singleSided {
-  color: #d62728; /* Red for single-sided */
-}
-
-.loading,
-.error {
+.text {
   text-align: center;
+}
+
+.title {
+  display: block;
   font-size: 18px;
-  margin: 20px;
+  font-weight: 600;
+  color: #333; /* Default text color */
+  margin-bottom: 8px;
+}
+
+.number {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1488db; /* Default number color */
+  margin-bottom: 8px;
+}
+
+.detail {
+  font-size: 14px;
+  color: #666; /* Default detail color */
+}
+
+.container:hover .title {
+  color: #ffffff; /* Change title text color to white on hover */
+}
+
+.container:hover .number {
+  color: #ffffff; /* Change number text color to white on hover */
+}
+
+.container:hover .detail {
+  color: #e5e5e5; /* Slightly lighter white for detail text */
 }
