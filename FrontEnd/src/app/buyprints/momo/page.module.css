@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Đảm bảo ảnh nền không kéo dài ngoài khung */
-    position: relative; /* Cần thiết để `backgroundImageStyle` nằm bên trong*/
+    overflow: hidden; 
+    position: relative; 
     background-color: var(--home-background-color);
 }
 .logo {
@@ -11,14 +11,14 @@
   width: 40px; 
   height: auto; 
   margin-right: 20px;
-  display: block; /* Đảm bảo ảnh không bị lỗi inline */
+  display: block; 
 }
 .logoqr {
   
     width: auto; 
     height: auto; 
     margin-right: 20px;
-    display: block; /* Đảm bảo ảnh không bị lỗi inline */
+    display: block; 
   }
 .link {
   text-decoration: none;
@@ -29,24 +29,24 @@
 .item {
   margin-top: 20px;
   margin-left: 100px;
-  display: flex; /* Make the item a flex container */
-  align-items: center; /* Align items vertically */
+  display: flex; 
+  align-items: center; 
   color: black;
-  gap: 10px; /* Khoảng cách giữa các phần tử */
+  gap: 10px; 
 }
 
 .item:hover {
-  text-decoration: underline; /* Thêm gạch chân khi hover */
-  text-decoration-color: #1488DB; /* Màu xanh cho gạch chân */
-  text-decoration-thickness: 2px; /* Độ dày của gạch chân */
-  text-underline-offset: 5px; /* Khoảng cách từ chữ xuống gạch chân */
+  text-decoration: underline; 
+  text-decoration-color: #1488DB; 
+  text-decoration-thickness: 2px; 
+  text-underline-offset: 5px; 
 }
 .leftHalf {
     width: 50%;
     height: 1000px;
     display: flex;
-    flex-direction: column; /* Align items in a column */
-    justify-content: flex-start; /* Align items to the top */
+    flex-direction: column;
+    justify-content: flex-start; 
     font-weight: bold;
     font-family: 'Roboto, sans-serif';
   }
@@ -62,23 +62,23 @@
     color: #287ebb;
 }
   .leftHalf .titleContainer {
-    align-items: center; /* Căn giữa theo chiều dọc */
-    gap: 10px; /* Khoảng cách giữa các phần tử */
-    margin-bottom: 20px; /* Thêm khoảng cách dưới */
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 20px; 
   }
 
 .leftHalf .titleh2 {
-    font-size: 16px; /* Adjust font size as needed */
+    font-size: 16px;
     font-weight: bold;
     color: #1488DB;
   }
 .leftHalf .titleh2:hover {
-    background-color: white; /* Thay đổi màu khi hover */
+    background-color: white;
 }
 .leftHalf .titleh1 {
   margin-top: 30px;
     margin-left: 100px;
-    font-size: 30px; /* Adjust font size as needed */
+    font-size: 30px; 
     font-weight: bold;
     color: black;
   }
@@ -103,7 +103,7 @@
   .leftHalf .orderItemContainer .icon2{
     margin-left: 10px;
     color: #1488DB;
-    display: flex; /* Đặt các icon và nút theo hàng ngang */
+    display: flex; 
     align-items: center;
     cursor: pointer;
     gap: 8px;
@@ -111,9 +111,9 @@
   .leftHalf .orderItemContainer .icon2_1{
     margin-left: 45px;
     color: #1488DB;
-    display: flex; /* Đặt các icon và nút theo hàng ngang */
+    display: flex; 
     align-items: center;
-    gap: 8px; /* Khoảng cách giữa các phần tử */
+    gap: 8px; 
     cursor: pointer;
   }
   .leftHalf .orderItemContainer .title{
@@ -151,7 +151,7 @@
 .leftHalf .orderTitle {
   margin-left: 100px;
   margin-top: 30px;
-  font-size: 40px; /* Adjust font size as needed */
+  font-size: 40px; 
   font-weight: bold;
   color: black;
 }
@@ -178,9 +178,9 @@
     height: 1000px;
     background-color: white;
     display: flex;
-    flex-direction: column; /* Align items in a column */
-    justify-content: top;  /*Align items to the top*/
-    align-items: center; /* Align items to the center */
+    flex-direction: column; 
+    justify-content: top;  
+    align-items: center; 
     font-weight: bold;
     font-family: Inter;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);   
@@ -195,13 +195,13 @@
   }
   .rightHalf .paymentTitle {
     margin-top: 50px;
-    font-size: 32px; /* Adjust font size as needed */
+    font-size: 32px; 
     font-weight: bold;
     color: black;
   }
   .rightHalf .subpaymentTitle {
     margin-top: 20px;
-    font-size: 20px; /* Adjust font size as needed */
+    font-size: 20px; 
     font-weight: bold;
     color: black;
     margin-left: 35px;
@@ -209,7 +209,7 @@
 
 .rightHalf.title {
     display: flex;
-    font-size: 40px; /* Adjust font size as needed */
+    font-size: 40px;
     font-weight: bold;
     color: black;
     font-family: 'Roboto, sans-serif';
